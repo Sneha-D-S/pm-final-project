@@ -1,53 +1,23 @@
-# Problem Hook & Value Proposition: [StreamLine / RouteLogic / your initiative]
+# Problem Hook & Value Proposition, Module 1
 
-> **Module 1 · ★ Deliverable 1.** Repo file `01-product-thinking/problem-hook.md` — part of your submission.
-> Do the lab in the **Module 1 · Exercise 2 Guide** (linked from the Module 1 deck), then click **⬇ Download .md** — it saves as this exact file. Commit it here.
-> It becomes the **Problem, Value & Hypothesis** slide of your Module 6 final deck. (Your Module 1 · Exercise 1 discovery map lands in `strategic-map.md`.)
+- **Scenario:** RouteLogic Velocity (B2B)
 
-## 1. Chosen scenario
+## Strategic crisis
 
-**Path:** _StreamLine Spotlight (B2C) · RouteLogic Velocity (B2B) · my own initiative_
+Users will gravitate towards the competitor that RouteLogic's current Enterprise account has already identified as a replacement for RouteLogic's capabilities.
 
-_One line on why you picked it._
+## Moment of misery
 
-## 2. The strategic crisis
+Wade through unnecessary clutter to get to overly complex experiences to get their tasks done.
 
-_The big-picture business risk. If the company does nothing for 12 months, what happens to its market position?_
+## Problem hook
 
-> If we do nothing for 12 months, the company will…
+Users will gravitate towards competitors to avoid having to wade through overly complex experiences to get their tasks done.
 
-## 3. The moment of misery
+## Value proposition
 
-_The specific point where the product fails the user, forcing a manual workaround (Google, spreadsheets, group texts, a competitor)._
+For real-time fleet coordinators , we will integrate AI into the application to help them cut through the clutter and get their work done at optimum efficiency because RouteLogic has carefully captured a lot of the end to end capabilities that users are looking for. Now is the time to allow our users to leverage it's already powerful platform and use AI to help users navigate through it and get their tasks done in record time. .
 
-> The user is currently forced to…
+## Cold-read self-review
 
-## 4. Problem hook
-
-_One urgent sentence fusing the business risk and the user pain, your pitch for why this is the most important thing to work on right now._
-
-> We must solve [business risk] by addressing [user pain]…
-
-## 5. Value proposition
-
-_Who it's for, the new value, and why it's urgent to launch now._
-
-> For **[who]**, we will **[value]** because **[urgent why]**.
-
-## 6. Cold-read self-review
-
-_Read your hook back as a skeptical stakeholder. If you don't feel the urgency, that's your data._
-
-| Question | Your answer |
-|---|---|
-| Is the business risk high-stakes enough to justify a new initiative? | _____ |
-| Is the moment of misery systemic, or just an edge case? | _____ |
-| Does the value proposition actually remove the obstacle? | _____ |
-
-## 7. Finalized hypothesis _(complete in Module 3)_
-
-> Based on [qual + quant evidence], I believe that [solving X] for [persona] will result in [outcome], as measured by a [X%] change in [success metric]. I will protect [guardrail metric] and make a go/no-go decision after [decision window].
-
-## Link to full artifact
-
-_[link to your Problem Hook Builder export]_
+Yes, it is high-stakes because simplifying the experience now will retain users looking at competitors. Further, integrating AI into the existing app could help differentiate RouteLogic from it's competitors by adding a simplified layer across an experience that already holds a lot of the user's data.
