@@ -1,17 +1,27 @@
-# AI Synthesis — Product Health & Insights Summary
+# Persona & Future-State Journey, Module 2
 
-> **Module 2 · Lab 1.** Repo file `02-discovery/ai-synthesis.md` — part of your submission.
-> Do the lab in the **Module 2 · Exercise 1 Guide** (linked from the Module 2 deck), then click **⬇ Download .md** — it saves as this exact file. Commit it here.
-> It feeds the **Research & Competitive Analysis** slide of your Module 6 final deck, alongside `competitive-and-journey.md`.
+- **Scenario:** RouteLogic Velocity (B2B)
 
-## Responses
+## Persona
+- **Role:** The Frontline Driver, A working delivery driver who performs the same core actions dozens of times per shift under real-world physical constraints.
+- **Goal:** Complete deliveries quickly and move to the next stop without the app slowing him down.
+- **Friction:** Essential, high-frequency actions require too many steps. The misery isn't abstract complexity; it's complexity colliding with a physical moment where he has no spare hand, no spare time, and no patience left.
 
-- **Moment of misery / red flag #1:** _(not filled in)_
-- **Moment of misery / red flag #2:** _(not filled in)_
-- **Moment of misery / red flag #3:** _(not filled in)_
-- **Product Health & Insights Summary (Claude's output):** _(not filled in)_
-- **Did the AI catch the specific moment of misery / pain point you found in Step 1?:** _(not filled in)_
-- **Did it smooth over a critical frustration into a generic bullet point?:** _(not filled in)_
-- **Did the AI try to suggest features or a roadmap despite the constraints?:** _(not filled in)_
-- **Logic leak / hallucination #1:** _(not filled in)_
-- **Logic leak / hallucination #2:** _(not filled in)_
+## Current workaround (the status quo to beat)
+- **External tools:** Whatsapp, Paper, Phone's screenshot feature
+- **The process:** 1) Direct texting to dispatched and 
+2) Paper manifest as a parallel record
+3) Screenshotting the route each morning
+- **Core frustration:** When the driver has completed a delivery and decides to "Mark Delivered" via a workaround
+- **The evidence:** "We keep a WhatsApp group as the real system"
+
+## Future-state journey map
+1. Approach the stop
+2. Complete the action
+3. Confirm & move on
+4. Trust the system
+
+## Competitive advantages
+1) The AI chat can refer to the driver's live location to identify their destination against their delivery route 
+2) Quick tap on the "Delivered" button to mark the delivery (One step) 
+3) "Marks done" in the main data base so that the log for all the driver's deliveries is shared with their manager in real time.
