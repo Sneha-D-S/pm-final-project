@@ -18,6 +18,9 @@
 - **My “Now” lane (this sprint), the 2 to 3 quick wins I’ll build first:** B1: One-click Compliance Checklist, B3 Shift Jandoff Wizard, B5: Step Progress Indicator
 - **What I cut, and the “no” I’m protecting the scope from:** "In-app Coordinator training" and "Fleet Analytics Manager view"
 - **Prototype/roadmap screenshot link (paste into your deliverables):** The Html code for the prototype is here as a string. Extract it to create a html file and use it to extract screenshots where applicable. 
+
+##Prototype
+Here is the prototype in the form of an string in quotes. Extract the html code and generate the prototype. Take screenshots of it where applicable.  
 "<!DOCTYPE html>
 <html lang="en">
 <head>
