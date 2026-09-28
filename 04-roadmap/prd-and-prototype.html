@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RouteLogic Velocity Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1720;
+    --surface: #16202b;
+    --surface-2: #1c2733;
+    --border: #29394a;
+    --text: #e7edf4;
+    --text-dim: #8fa0b3;
+    --text-faint: #5c6c7d;
+    --accent: #4f8ef7;
+    --accent-dim: #2a3f5c;
+    --qw: #4ade80;
+    --qw-bg: rgba(74, 222, 128, 0.12);
+    --mp: #60a5fa;
+    --mp-bg: rgba(96, 165, 250, 0.12);
+    --fi: #fbbf24;
+    --fi-bg: rgba(251, 191, 36, 0.12);
+    --ts: #f87171;
+    --ts-bg: rgba(248, 113, 113, 0.10);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    padding: 32px 24px 64px;
+  }
+
+  .wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Header ---------- */
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand-mark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-mark .glyph {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), #2f5fb0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .brand-mark .glyph svg { width: 22px; height: 22px; }
+
+  .brand-text h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-text .sub {
+    margin-top: 2px;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-family: "IBM Plex Mono", monospace;
+    letter-spacing: 0.02em;
+  }
+
+  .team-strip {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .team-chip {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    min-width: 92px;
+  }
+
+  .team-chip .n {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 17px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .team-chip .l {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ---------- Legend / filter ---------- */
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .legend-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+    align-self: center;
+    margin-right: 4px;
+  }
+
+  .chip {
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    transition: transform 0.12s ease, opacity 0.12s ease;
+  }
+
+  .chip:hover { transform: translateY(-1px); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .chip.qw { background: var(--qw-bg); color: var(--qw); }
+  .chip.mp { background: var(--mp-bg); color: var(--mp); }
+  .chip.fi { background: var(--fi-bg); color: var(--fi); }
+  .chip.ts { background: var(--ts-bg); color: var(--ts); }
+  .chip.qw .dot { background: var(--qw); }
+  .chip.mp .dot { background: var(--mp); }
+  .chip.fi .dot { background: var(--fi); }
+  .chip.ts .dot { background: var(--ts); }
+
+  .chip.reset {
+    background: var(--surface-2);
+    color: var(--text-dim);
+    border-color: var(--border);
+  }
+
+  body.filtering .card { opacity: 0.28; filter: saturate(0.5); }
+  body.filtering .card.match { opacity: 1; filter: none; }
+
+  /* ---------- Board ---------- */
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+
+  .lane {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 100%;
+  }
+
+  .lane-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .lane-head h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .lane[data-lane="now"] .lane-head h2 { color: var(--qw); }
+  .lane[data-lane="next"] .lane-head h2 { color: var(--mp); }
+  .lane[data-lane="later"] .lane-head h2 { color: var(--text-dim); }
+
+  .lane-head .stage {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: "IBM Plex Mono", monospace;
+    text-align: right;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 14px 12px;
+    transition: opacity 0.15s ease, filter 0.15s ease;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .card-id {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+  }
+
+  .card-name {
+    margin: 2px 0 0;
+    font-size: 14.5px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .badge {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .badge.qw { background: var(--qw-bg); color: var(--qw); }
+  .badge.mp { background: var(--mp-bg); color: var(--mp); }
+  .badge.fi { background: var(--fi-bg); color: var(--fi); }
+  .badge.ts { background: var(--ts-bg); color: var(--ts); }
+
+  .card-rationale {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+
+  /* ---------- Cut list ---------- */
+
+  .cutlist {
+    margin-top: 36px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .cutlist-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cutlist-head h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+
+  .cutlist-head .count {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  .cut-rows { background: var(--bg); }
+
+  .cut-row {
+    display: grid;
+    grid-template-columns: 70px 220px 1fr 110px;
+    gap: 16px;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cut-row:last-child { border-bottom: none; }
+
+  .cut-id {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    color: var(--text-faint);
+  }
+
+  .cut-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dim);
+  }
+
+  .cut-rationale {
+    font-size: 12px;
+    color: var(--text-faint);
+    line-height: 1.5;
+  }
+
+  .cut-row .badge { justify-self: end; }
+
+  footer.pagefoot {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-faint);
+    font-family: "IBM Plex Mono", monospace;
+  }
+
+  @media (max-width: 860px) {
+    .board { grid-template-columns: 1fr; }
+    .cut-row { grid-template-columns: 1fr; gap: 6px; }
+    .cut-row .badge { justify-self: start; }
+    header { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand-mark">
+      <div class="glyph">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 12h4l2-6 4 12 2-6h6" stroke="#0f1720" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>RouteLogic Velocity</h1>
+        <div class="sub">DRIVER FRICTION ROADMAP — Q4 PILOT CYCLE</div>
+      </div>
+    </div>
+    <div class="team-strip">
+      <div class="team-chip"><span class="n">2</span><span class="l">Engineers</span></div>
+      <div class="team-chip"><span class="n">1</span><span class="l">Designer</span></div>
+      <div class="team-chip"><span class="n">1</span><span class="l">CS Lead</span></div>
+    </div>
+  </header>
+
+  <div class="legend" role="group" aria-label="Filter by quadrant">
+    <span class="legend-title">Filter by quadrant</span>
+    <button class="chip qw" data-quad="qw"><span class="dot"></span>Quick Win</button>
+    <button class="chip mp" data-quad="mp"><span class="dot"></span>Major Project</button>
+    <button class="chip fi" data-quad="fi"><span class="dot"></span>Fill-In</button>
+    <button class="chip ts" data-quad="ts"><span class="dot"></span>Time Sinker</button>
+    <button class="chip reset" data-quad="all">Show all</button>
+  </div>
+
+  <div class="board">
+
+    <section class="lane" data-lane="now">
+      <div class="lane-head">
+        <h2>NOW</h2>
+        <div class="stage">Pilot · 4 weeks · 3 accounts</div>
+      </div>
+      <div class="cards">
+
+        <article class="card" data-quad="qw">
+          <div class="card-top">
+            <div>
+              <div class="card-id">B1</div>
+              <p class="card-name">One-Click Compliance Checklist</p>
+            </div>
+            <span class="badge qw">Quick Win</span>
+          </div>
+          <p class="card-rationale">It attacks the longest, most-repeated step directly, and a pre-filled form removes the typing and tapping that collide with the driver's occupied hands.</p>
+        </article>
+
+        <article class="card" data-quad="qw">
+          <div class="card-top">
+            <div>
+              <div class="card-id">B3</div>
+              <p class="card-name">Shift Handoff Wizard</p>
+            </div>
+            <span class="badge qw">Quick Win</span>
+          </div>
+          <p class="card-rationale">It's the only feature that protects the guardrail (handoff completion and driver churn) while also saving ~6.8 min/day.</p>
+        </article>
+
+        <article class="card" data-quad="qw">
+          <div class="card-top">
+            <div>
+              <div class="card-id">B5</div>
+              <p class="card-name">Step Progress Indicator</p>
+            </div>
+            <span class="badge qw">Quick Win</span>
+          </div>
+          <p class="card-rationale">Made interactive so a "Delivered" status becomes a one-click confirmation, it collapses a manual step into a tap, directly cutting time on task for a near-zero engineering cost.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="lane" data-lane="next">
+      <div class="lane-head">
+        <h2>NEXT</h2>
+        <div class="stage">GA Release · Weeks 5–8</div>
+      </div>
+      <div class="cards">
+
+        <article class="card" data-quad="mp">
+          <div class="card-top">
+            <div>
+              <div class="card-id">B4</div>
+              <p class="card-name">Mobile-First Coordinator Dashboard</p>
+            </div>
+            <span class="badge mp">Major Project</span>
+          </div>
+          <p class="card-rationale">It targets the "too many steps" misery, but it's a platform-level rebuild that can't ship in 4 weeks, and it's framed around the Coordinator rather than the Driver.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="lane" data-lane="later">
+      <div class="lane-head">
+        <h2>LATER</h2>
+        <div class="stage">Backlog</div>
+      </div>
+      <div class="cards">
+
+        <article class="card" data-quad="fi">
+          <div class="card-top">
+            <div>
+              <div class="card-id">B7</div>
+              <p class="card-name">Contextual AI ETA Display</p>
+            </div>
+            <span class="badge fi">Fill-In</span>
+          </div>
+          <p class="card-rationale">The 11% adoption suggests drivers don't need it, and it has no link to compliance or handoff.</p>
+        </article>
+
+        <article class="card" data-quad="fi">
+          <div class="card-top">
+            <div>
+              <div class="card-id">B9</div>
+              <p class="card-name">Compliance Audit Trail Export</p>
+            </div>
+            <span class="badge fi">Fill-In</span>
+          </div>
+          <p class="card-rationale">It serves Legal and CS, not the driver, and doesn't reduce time on task.</p>
+        </article>
+
+      </div>
+    </section>
+
+  </div>
+
+  <div class="cutlist">
+    <div class="cutlist-head">
+      <h2>Cut List</h2>
+      <span class="count">4 items</span>
+    </div>
+    <div class="cut-rows">
+
+      <div class="cut-row">
+        <span class="cut-id">B2</span>
+        <span class="cut-name">Smart Daily Report Auto-Fill</span>
+        <span class="cut-rationale">It's a once-per-shift task, not a dozens-per-shift one, so it barely moves time on task, though it can reuse B1's pre-fill logic.</span>
+        <span class="badge fi">Fill-In</span>
+      </div>
+
+      <div class="cut-row">
+        <span class="cut-id">B6</span>
+        <span class="cut-name">Driver Alert Notifications</span>
+        <span class="cut-rationale">It adds interruptions to a driver with no spare hand and does nothing for compliance friction.</span>
+        <span class="badge fi">Fill-In</span>
+      </div>
+
+      <div class="cut-row">
+        <span class="cut-id">B8</span>
+        <span class="cut-name">Fleet Analytics Manager View</span>
+        <span class="cut-rationale">It's a Sales-driven exec dashboard with drill-down that does nothing for the driver's core friction and would consume the whole pilot.</span>
+        <span class="badge ts">Time Sinker</span>
+      </div>
+
+      <div class="cut-row">
+        <span class="cut-id">B10</span>
+        <span class="cut-name">In-App Coordinator Training</span>
+        <span class="cut-rationale">It's a content-heavy build for a non-driver persona, and it treats the symptom (a learning curve) rather than the step count.</span>
+        <span class="badge ts">Time Sinker</span>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="pagefoot">ROUTELOGIC VELOCITY — EFFORT VS. VALUE PRIORITIZATION</footer>
+
+</div>
+
+<script>
+  (function () {
+    var chips = document.querySelectorAll('.chip');
+    var cards = document.querySelectorAll('.card');
+    var body = document.body;
+    var active = null;
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var quad = chip.getAttribute('data-quad');
+        if (quad === 'all' || active === quad) {
+          active = null;
+          body.classList.remove('filtering');
+          cards.forEach(function (c) { c.classList.remove('match'); });
+          chips.forEach(function (c) { c.style.opacity = ''; });
+          return;
+        }
+        active = quad;
+        body.classList.add('filtering');
+        cards.forEach(function (c) {
+          c.classList.toggle('match', c.getAttribute('data-quad') === quad);
+        });
+        chips.forEach(function (c) {
+          c.style.opacity = (c.getAttribute('data-quad') === quad || c.getAttribute('data-quad') === 'all') ? '1' : '0.5';
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
